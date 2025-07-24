@@ -28,7 +28,7 @@
 	Under a small variation of them, we will exploit the following Prof. C\'{a}rcamo's idea: if
 	\begin{equation}\label{Eqn:ProfCarcaIdea}
 		\begin{aligned}
-			\sigma(\lambda,\operatorname{P}-\operatorname{Q})&=\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,((\operatorname{P}-\operatorname{Q})\,(f))=\left\|\mu_{\operatorname{P}}-\mu_{\operatorname{Q}}\right\|_{\mathcal{H}_{k,\lambda}}
+			\psi(\lambda,\operatorname{P}-\operatorname{Q})&=\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,((\operatorname{P}-\operatorname{Q})\,(f))=\left\|\mu_{\operatorname{P}}^{\lambda}-\mu_{\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}
 			\\&=\left(\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)\right)^{\rfrac{1}{2}},
 		\end{aligned}
 	\end{equation}
@@ -41,9 +41,42 @@
 		\item Empirical results, code (\verb!C++!) and so: having the asymptotic distribution under the alternative, we can detect or explore examples where Gretton's heuristics is not working (interaction between the two terms of the limit, see below).
 	\end{enumerate}
 		\subsubsection*{Extension of mean embedding to the space $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$}
-		\subsubsection*{Draft of the proof of differentiability}
-			Our object of desire is the asymptotic behavior of the increment quotient
-			\begin{equation}
-				\frac{\underset{f\in\mathcal{F}_{k,\lambda+t_{j}\,h_{j}^{\lambda}}}{\operatorname{sup}}\,\left(\left(g^{\ast}+t_{j}\,h_{j}^{g^{\ast}}\right)\,(f)\right)-\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(g^{\ast}\,(f)\right)}{t_{j}},
-			\end{equation}
-			where $t_{j}\searrow0$, $h_{j}^{\lambda}\longrightarrow h^{\lambda}$ in $\Lambda$ and $h_{j}^{g^{\ast}}\longrightarrow h^{g^{\ast}}$ in $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$.
+\section{Differentiability result}
+	\begin{Th}
+		Let us assume that the family of kernels $\left\{k_{\lambda}:\lambda\in\Lambda\right\}$ satisfies \ref{itm:Dom}, \ref{itm:Ide} and \ref{itm:Par}.
+		
+		If $\operatorname{P},\operatorname{Q}\in\mathcal{MB}_{\operatorname{p}}(\mathcal{X})$ such that $\operatorname{P}\neq\operatorname{Q}$, then the mapping $\psi$ in \eqref{Eqn:ProfCarcaIdea} is Hadamard directionally differentiable at $\operatorname{P}-\operatorname{Q}$
+		
+		tangentially to $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$, the subset of $\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)$ constituted by bounded, prelinear and continuous functionals with respect to the distance $\rho$ in \eqref{eq:metric-rho}. In such a case, the (directional) derivative of $\psi$ at $\operatorname{P}-\operatorname{Q}$ is given by
+		\begin{equation}\label{Eqn:psi_prime}
+			\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}(\zeta,g)=g\left(h^{+,\lambda}\right)+,\quad g\in\mathcal{C}\left(\mathcal{F}_{k,\Lambda},\rho\right),
+		\end{equation}
+		where the functions $h^{+,\lambda}$ are defined in \eqref{Witness}.
+	\end{Th}
+	\begin{proof}
+		By definition of Hadamard directional differentiability, given $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$ and $\zeta\in\Lambda$ and sequences $\left(g_{j}\right)_{j\in\mathbb{N}}\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)^{\mathbb{N}}$, $\left(\zeta_{j}\right)_{j\in\mathbb{N}}\in\Lambda^{\mathbb{N}}$ and $\left(t_{j}\right)_{j\in\mathbb{N}}\in\mathbb{R}^{\mathbb{N}}$ such that $\left\|g_{j}-g\right\|_{\infty}\longrightarrow0$, $d_{\Lambda}\left(\zeta_{j},\lambda\right)\longrightarrow0$ and $t_{j}\searrow0$ when $j\longrightarrow\infty$ we have to show that
+		\begin{equation}
+			\lim_{j\longrightarrow\infty}\frac{\psi\left(\lambda+t_{j}\,\zeta_{j},\operatorname{P}-\operatorname{Q}+t_{j}\,g_{j}\right)-\psi(\lambda,\operatorname{P}-\operatorname{Q})-t_{j}\,\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}\left(\zeta,g\right)}{t_{j}}=0.
+		\end{equation}
+		To begin with, note that
+		\begin{equation}
+			\frac{\psi\left(\lambda+t_{j}\,\zeta_{j},\operatorname{P}-\operatorname{Q}+t_{j}\,g_{j}\right)-\psi(\lambda,\operatorname{P}-\operatorname{Q})-t_{j}\,\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}\left(\zeta,g\right)}{t_{j}}=L_{1}+L_{2}+L_{3},
+		\end{equation}
+		where
+		\begin{equation}
+			\begin{aligned}
+				L_{1}&=\frac{\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(\left(\operatorname{P}-\operatorname{Q}+t_{j}\,g_{j}\right)\,(f)\right)-\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(\left(\operatorname{P}-\operatorname{Q}\right)\,(f)\right)}{t_{j}},
+				\\
+				L_{2}&=\frac{1}{L_{4}}\,\left(\int_{\mathcal{X}}\int_{\mathcal{X}}\frac{k_{\lambda+t_{j}\,\zeta_{j}}(x,y)-k_{\lambda}(x,y)}{t_{j}}\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)\right),
+				\\
+				L_{3}&=\frac{1}{L_{4}}\,\left(g_{j}\left(\int_{\mathcal{X}}\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\right)\right.
+				\\
+				&\quad+\int_{\mathcal{X}}g_{j}\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)+t_{j}\,\left(\left\|\mu_{g_{j}}^{\lambda+t_{j}\,\zeta_{j}}\right\|_{\mathcal{H}_{k,\lambda+t_{j}\,\zeta_{j}}}\right.
+				\\
+				&\quad\left.\left.-\left\|\mu_{g_{j}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}\right)\right),
+				\\
+				L_{4}&=\left(\left\|\mu_{g_{j}}^{\lambda+t_{j}\,\zeta_{j}}\right\|_{\mathcal{H}_{k,\lambda+t_{j}\,\zeta_{j}}}+\left\|\mu_{g_{j}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}\right)^{\rfrac{1}{2}}.
+			\end{aligned}
+		\end{equation}
+		The convergence of $L_{1}$ was proved in \textcite[Lemma 4]{Carcamo2024} and the limit is $g\left(h^{+,\lambda}\right)$, where $h^{+,\lambda}$ was defined in {\color{orange}INSERTAR ECUACI\'{O}N}.
+	\end{proof}
