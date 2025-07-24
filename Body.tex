@@ -1,0 +1,49 @@
+\begin{abstract}
+
+\end{abstract}
+
+%\begin{keyword}
+\keywords{}
+%\end{keyword}
+
+\MSC{Primary: 62G20, 62E20 Secondary: 62-08}
+
+\section{Introduction}\label{Sec:Intro}
+	The goal of this manuscript is showing the asymptotic behavior of the kernel distance when the parameter of the family is estimated from the data (data-driven parameter). Recall first some notation: $\left\{k_{\lambda}:\lambda\in\Lambda\right\}$ is a family of kernels where $\Lambda$ is a parameter space to be specified later. For each of the kernels $k_{\lambda}$ we will denote by $\mathcal{H}_{k,\lambda}$ its associated RKHS and the unit ball of such space as $\mathcal{F}_{k,\lambda}$. For a given Borel's measure $\operatorname{S}$, the mean embedding is defined as
+	\begin{equation}
+		\mu_{\operatorname{S}}(\cdot)=\int_{\mathcal{X}}k_{\lambda}(\cdot,y)\,\operatorname{d}\!\operatorname{S}(y),
+	\end{equation}
+	where the integral is understand in the Pettis' sense. The interest of mean embedding lays in the following definition property: for every $f\in\mathcal{H}_{k,\lambda}$, we have that $\operatorname{S}(f)=\inp{f}{\mu_{\operatorname{S}}}{\mathcal{H}_{k,\lambda}}$, where $\inp{\,}{\,}{\mathcal{H}_{k,\lambda}}$ denotes the inner product. In terms of the Riesz's representation theorem for Hilbert's spaces, the mean embedding is the dual element of the integral functional induced by $\operatorname{S}$ in $\mathcal{H}_{k,\lambda}$ (provided integrability assumptions).
+	
+	In \textcite{Carcamo2024} we used the following set of assumptions.
+	\begin{description}
+		\labitem{(Reg)}{itm:Reg} \textit{Regularity assumption.} $\mathcal{X}$ is a separable metric space and each kernel is continuous as a real function of one variable (with the other kept fixed).
+		%, that is, $\sup_{x\in\mathcal{X}} k(x,x)$, $\sup_{x\in\mathcal{X}} k_\lambda(x,x)<\infty$ and $k_\lambda(x,\cdot)$, $k(x,\cdot)$ are continuous functions, for each fixed $x\in \mathcal{X}$, $\lambda\in\Lambda$.
+		\labitem{(Dom)}{itm:Dom} \textit{Dominance assumption.} There exists a constant $c>0$ such that $k_{\lambda}\ll c\,k$, for all $\lambda\in\Lambda$. Further, $k$ is bounded on the diagonal, that is, $\underset{x\in\mathcal{X}}{\operatorname{sup}}\,(k(x,x))<\infty$.
+		\labitem{(Ide)}{itm:Ide} \textit{Identifiability assumption.} If $\operatorname{P}\neq\operatorname{Q}$, there exists $\lambda\in\Lambda$ such that $\mu_{\operatorname{P}}^{\lambda}\neq\mu_{\operatorname{Q}}^{\lambda}$.
+		% The mean embeddings separate $\P$ and $\Q$ whenever , that is,
+		\labitem{(Par)}{itm:Par} \textit{Continuous parametrization.} $\Lambda$ is a compact subset of $\mathbb{R}^{k}$ (with $k\in\mathbb{N}$) and, for a fixed $(x,y)\in\mathcal{X}\times\mathcal{X}$, the function $\lambda\mapsto k_{\lambda}(x,y)$ is continuous from $\Lambda$ to $\mathbb{R}$.
+		\labitem{(Sam)}{itm:Sam} \textit{Sampling scheme.} The sampling scheme is balanced, that is, $\frac{n}{(n+m)}\to\theta$, with $\theta\in[0,1]$, as $n,m\to\infty$.
+	\end{description}
+	Under a small variation of them, we will exploit the following Prof. C\'{a}rcamo's idea: if
+	\begin{equation}\label{Eqn:ProfCarcaIdea}
+		\begin{aligned}
+			\sigma(\lambda,\operatorname{P}-\operatorname{Q})&=\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,((\operatorname{P}-\operatorname{Q})\,(f))=\left\|\mu_{\operatorname{P}}-\mu_{\operatorname{Q}}\right\|_{\mathcal{H}_{k,\lambda}}
+			\\&=\left(\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)\right)^{\rfrac{1}{2}},
+		\end{aligned}
+	\end{equation}
+	we can use the integral expression to compute the derivative explicitly.
+	
+	Some questions around \eqref{Eqn:ProfCarcaIdea}:
+	\begin{enumerate}
+		\item What is the appropriate domain for the new functional in order to compute the Hadamard directional derivative? As we can see, in \eqref{Eqn:ProfCarcaIdea}, the argument of $\sigma$ has been extended. Additionally, the integral expression is valid for every element of $\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)$.
+		\item What is the new process? Obviously the empirical process is involved in the second argument. But for the first we should have to add assumptions on the parameter estimation (M-estimators, etc).
+		\item Empirical results, code (\verb!C++!) and so: having the asymptotic distribution under the alternative, we can detect or explore examples where Gretton's heuristics is not working (interaction between the two terms of the limit, see below).
+	\end{enumerate}
+		\subsubsection*{Extension of mean embedding to the space $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$}
+		\subsubsection*{Draft of the proof of differentiability}
+			Our object of desire is the asymptotic behavior of the increment quotient
+			\begin{equation}
+				\frac{\underset{f\in\mathcal{F}_{k,\lambda+t_{j}\,h_{j}^{\lambda}}}{\operatorname{sup}}\,\left(\left(g^{\ast}+t_{j}\,h_{j}^{g^{\ast}}\right)\,(f)\right)-\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(g^{\ast}\,(f)\right)}{t_{j}},
+			\end{equation}
+			where $t_{j}\searrow0$, $h_{j}^{\lambda}\longrightarrow h^{\lambda}$ in $\Lambda$ and $h_{j}^{g^{\ast}}\longrightarrow h^{g^{\ast}}$ in $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$.

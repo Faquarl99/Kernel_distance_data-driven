@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subcaption}
+% Para colorinchis.
+\usepackage{xcolor}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+% Referencing.
+\usepackage{hyperref}
+\usepackage{url}
+% Quotation and citation facilities.
+\usepackage{csquotes}
+% Bibliography.
+\usepackage[style=apa]{biblatex}
+
+%---------------------------------------------------------------------------
+% Environments.
+\newtheorem{Th}{Theorem}
+\newtheorem{Prop}[Th]{Proposition}
+\newtheorem{Cor}[Th]{Corollary}
+\newtheorem{Lema}[Th]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{Ej}[Th]{Example}
+\newtheorem{Obs}[Th]{Remark}
+\newtheorem{Def}[Th]{Definition}
+\newtheorem{Not}[Th]{Notation}
+
+\theoremstyle{remark}
+\newtheorem*{Proof}{Proof}
+%-------------------------------------------------------------------------------
+% Bibliography.
+\addbibresource{Bibliografia.bib}
+%-------------------------------------------------------------------------------
+% Definitions.
+\newcommand{\sgn}{\ensuremath{\operatorname{sgn}}} % sign function.
+\newcommand{\cd}{\ensuremath{\rightsquigarrow}} % Weak convergence.
+\newcommand{\cp}{\ensuremath{\to_{\operatorname{P}}}} % Convergence in probability.
+\newcommand{\esssup}{\ensuremath{\operatorname{ess\,sup}}} % Essential supremum.
+\newcommand{\amp}{\ensuremath{\operatorname{amp}}} % Amplitude.
+\newcommand{\argmin}[2]{\ensuremath{\underset{#1}{\operatorname{arg\,min}}\,\left({#2}\right)}} % argmin.
+\newcommand{\card}{\ensuremath{\operatorname{Card}}} % Cardinal.
+\newcommand{\Var}{\ensuremath{\mathbb{V}\!\operatorname{ar}}} % Variance.
+\newcommand{\Cov}{\ensuremath{\mathbb{C}\!\operatorname{ov}}} % Covariance.
+\newcommand{\inp}[3]{\left\langle #1, #2\right\rangle_{#3}} % Inner product.
+\newcommand{\rfrac}[2]{^{#1}\!/_{#2}} %Fracción /.
+\newcommand{\housen}{\color{blue}}
+% Colores.
+\definecolor{violet}{rgb}{0.7,0,0.6}
+\definecolor{turquesa}{rgb}{0,0.8046875,0.81640625}
+% Referencing with name in enumeration/itemization/description labels. Use with description.
+\makeatletter
+%Comando para poner afiliaciones de los autores
+\newcommand{\labitem}[2]{%
+	\def\@itemlabel{\textbf{#1}}
+	\item
+	\def\@currentlabel{#1}\label{#2}}
+\makeatother
+% End: Referencing with name in enumeration/itemization/description labels.
+\newcommand{\footremember}[2]{%
+    \footnote{#2}
+    \newcounter{#1}
+    \setcounter{#1}{\value{footnote}}%
+}
+\newcommand{\footrecall}[1]{%
+    \footnotemark[\value{#1}]%
+} 
+%Comando para keywords
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords}} #1}
+%Comando para MSC classification
+\providecommand{\MSC}[1]{\textbf{\textit{MSC 2020 subject classification}} #1}
+%-------------------------------------------------------------------------------
+%directory of the images
+\graphicspath{{./figures/}}
+
+\title{Distributional Convergence of Empirical Entropic Optimal Transport and Applications}
+
+\author{Javier C\'{a}rcamo \footnote{\scriptsize EHU-UPV} 
+			\and 
+			Antonio Cuevas \footnote{\scriptsize UAM}
+			\and
+			Luis Alberto Rodr\'{i}guez Ram\'{i}rez \footnote{\scriptsize Institute for Mathematical Stochastics, University of G\"ottingen, Goldschmidtstra{\ss}e 7, 37077 G\"ottingen}
+						}
+\date{\today}
