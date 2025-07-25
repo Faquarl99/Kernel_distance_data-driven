@@ -19,10 +19,10 @@
 	\begin{description}
 		\labitem{(Reg)}{itm:Reg} \textit{Regularity assumption.} $\mathcal{X}$ is a separable metric space and each kernel is continuous as a real function of one variable (with the other kept fixed).
 		%, that is, $\sup_{x\in\mathcal{X}} k(x,x)$, $\sup_{x\in\mathcal{X}} k_\lambda(x,x)<\infty$ and $k_\lambda(x,\cdot)$, $k(x,\cdot)$ are continuous functions, for each fixed $x\in \mathcal{X}$, $\lambda\in\Lambda$.
-		\labitem{(Dom)}{itm:Dom} \textit{Dominance assumption.} There exists a constant $c>0$ such that $k_{\lambda}\ll c\,k$, for all $\lambda\in\Lambda$. Further, $k$ is bounded on the diagonal, that is, $\underset{x\in\mathcal{X}}{\operatorname{sup}}\,(k(x,x))<\infty$.
+		\labitem{(Dom)}{itm:Dom} \textit{Dominance assumption.} There exists a constant $c>0$ such that $k_{\lambda}\ll c\,k$, for all $\lambda\in\Lambda$. Further, $k$ is bounded on the diagonal, that is, $\underset{x\in\mathcal{X}}{\operatorname{sup}}\,(k(x,x))<\infty$ {\color{orange}(CAMBIAR LA CONDICI\'{O}N DE DOMINANCIA. ES EXCESIVA)}.
 		\labitem{(Ide)}{itm:Ide} \textit{Identifiability assumption.} If $\operatorname{P}\neq\operatorname{Q}$, there exists $\lambda\in\Lambda$ such that $\mu_{\operatorname{P}}^{\lambda}\neq\mu_{\operatorname{Q}}^{\lambda}$.
 		% The mean embeddings separate $\P$ and $\Q$ whenever , that is,
-		\labitem{(Par)}{itm:Par} \textit{Continuous parametrization.} $\Lambda$ is a compact subset of $\mathbb{R}^{k}$ (with $k\in\mathbb{N}$) and, for a fixed $(x,y)\in\mathcal{X}\times\mathcal{X}$, the function $\lambda\mapsto k_{\lambda}(x,y)$ is continuous from $\Lambda$ to $\mathbb{R}$.
+		\labitem{(Par)}{itm:Par} \textit{Continuous parametrization.} $\Lambda$ is a compact subset of $\mathbb{R}^{k}$ (with $k\in\mathbb{N}$) and, for a fixed $(x,y)\in\mathcal{X}\times\mathcal{X}$, the function $\lambda\mapsto k_{\lambda}(x,y)$ is continuous from $\Lambda$ to $\mathbb{R}$ {\color{orange} MODIFICAR LA REGULARIDAD PARA INCLUIR LO QUE NECESITAMOS SOBRE DIFERENCIABILIDAD}.
 		\labitem{(Sam)}{itm:Sam} \textit{Sampling scheme.} The sampling scheme is balanced, that is, $\frac{n}{(n+m)}\to\theta$, with $\theta\in[0,1]$, as $n,m\to\infty$.
 	\end{description}
 	Under a small variation of them, we will exploit the following Prof. C\'{a}rcamo's idea: if
@@ -41,42 +41,89 @@
 		\item Empirical results, code (\verb!C++!) and so: having the asymptotic distribution under the alternative, we can detect or explore examples where Gretton's heuristics is not working (interaction between the two terms of the limit, see below).
 	\end{enumerate}
 		\subsubsection*{Extension of mean embedding to the space $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$}
-\section{Differentiability result}
-	\begin{Th}
-		Let us assume that the family of kernels $\left\{k_{\lambda}:\lambda\in\Lambda\right\}$ satisfies \ref{itm:Dom}, \ref{itm:Ide} and \ref{itm:Par}.
-		
-		If $\operatorname{P},\operatorname{Q}\in\mathcal{MB}_{\operatorname{p}}(\mathcal{X})$ such that $\operatorname{P}\neq\operatorname{Q}$, then the mapping $\psi$ in \eqref{Eqn:ProfCarcaIdea} is Hadamard directionally differentiable at $\operatorname{P}-\operatorname{Q}$
-		
-		tangentially to $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$, the subset of $\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)$ constituted by bounded, prelinear and continuous functionals with respect to the distance $\rho$ in \eqref{eq:metric-rho}. In such a case, the (directional) derivative of $\psi$ at $\operatorname{P}-\operatorname{Q}$ is given by
-		\begin{equation}\label{Eqn:psi_prime}
-			\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}(\zeta,g)=g\left(h^{+,\lambda}\right)+,\quad g\in\mathcal{C}\left(\mathcal{F}_{k,\Lambda},\rho\right),
-		\end{equation}
-		where the functions $h^{+,\lambda}$ are defined in \eqref{Witness}.
-	\end{Th}
-	\begin{proof}
-		By definition of Hadamard directional differentiability, given $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$ and $\zeta\in\Lambda$ and sequences $\left(g_{j}\right)_{j\in\mathbb{N}}\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)^{\mathbb{N}}$, $\left(\zeta_{j}\right)_{j\in\mathbb{N}}\in\Lambda^{\mathbb{N}}$ and $\left(t_{j}\right)_{j\in\mathbb{N}}\in\mathbb{R}^{\mathbb{N}}$ such that $\left\|g_{j}-g\right\|_{\infty}\longrightarrow0$, $d_{\Lambda}\left(\zeta_{j},\lambda\right)\longrightarrow0$ and $t_{j}\searrow0$ when $j\longrightarrow\infty$ we have to show that
-		\begin{equation}
-			\lim_{j\longrightarrow\infty}\frac{\psi\left(\lambda+t_{j}\,\zeta_{j},\operatorname{P}-\operatorname{Q}+t_{j}\,g_{j}\right)-\psi(\lambda,\operatorname{P}-\operatorname{Q})-t_{j}\,\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}\left(\zeta,g\right)}{t_{j}}=0.
-		\end{equation}
-		To begin with, note that
-		\begin{equation}
-			\frac{\psi\left(\lambda+t_{j}\,\zeta_{j},\operatorname{P}-\operatorname{Q}+t_{j}\,g_{j}\right)-\psi(\lambda,\operatorname{P}-\operatorname{Q})-t_{j}\,\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}\left(\zeta,g\right)}{t_{j}}=L_{1}+L_{2}+L_{3},
-		\end{equation}
-		where
-		\begin{equation}
-			\begin{aligned}
-				L_{1}&=\frac{\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(\left(\operatorname{P}-\operatorname{Q}+t_{j}\,g_{j}\right)\,(f)\right)-\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(\left(\operatorname{P}-\operatorname{Q}\right)\,(f)\right)}{t_{j}},
-				\\
-				L_{2}&=\frac{1}{L_{4}}\,\left(\int_{\mathcal{X}}\int_{\mathcal{X}}\frac{k_{\lambda+t_{j}\,\zeta_{j}}(x,y)-k_{\lambda}(x,y)}{t_{j}}\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)\right),
-				\\
-				L_{3}&=\frac{1}{L_{4}}\,\left(g_{j}\left(\int_{\mathcal{X}}\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\right)\right.
-				\\
-				&\quad+\int_{\mathcal{X}}g_{j}\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)+t_{j}\,\left(\left\|\mu_{g_{j}}^{\lambda+t_{j}\,\zeta_{j}}\right\|_{\mathcal{H}_{k,\lambda+t_{j}\,\zeta_{j}}}\right.
-				\\
-				&\quad\left.\left.-\left\|\mu_{g_{j}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}\right)\right),
-				\\
-				L_{4}&=\left(\left\|\mu_{g_{j}}^{\lambda+t_{j}\,\zeta_{j}}\right\|_{\mathcal{H}_{k,\lambda+t_{j}\,\zeta_{j}}}+\left\|\mu_{g_{j}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}\right)^{\rfrac{1}{2}}.
-			\end{aligned}
-		\end{equation}
-		The convergence of $L_{1}$ was proved in \textcite[Lemma 4]{Carcamo2024} and the limit is $g\left(h^{+,\lambda}\right)$, where $h^{+,\lambda}$ was defined in {\color{orange}INSERTAR ECUACI\'{O}N}.
-	\end{proof}
+\section{Main results}
+	\subsection{Differentiability results}
+		\begin{Lema}\label{Lema:PartialLipschitz}
+			{\color{orange}Resultado sobre la propiedad Lipschitz marginal (extensi\'{o}n del lema de Shapiro).}
+		\end{Lema}
+		\begin{proof}
+			
+		\end{proof}
+		\begin{Th}
+			{\color{orange}Let us assume that the family of kernels $\left\{k_{\lambda}:\lambda\in\Lambda\right\}$ satisfies \ref{itm:Dom}, \ref{itm:Ide} and \ref{itm:Par}.
+			
+			If $\operatorname{P},\operatorname{Q}\in\mathcal{MB}_{\operatorname{p}}(\mathcal{X})$ such that $\operatorname{P}\neq\operatorname{Q}$, then the mapping $\psi$ in \eqref{Eqn:ProfCarcaIdea} is Hadamard directionally differentiable at $\operatorname{P}-\operatorname{Q}$
+			
+			tangentially to $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$, the subset of $\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)$ constituted by bounded, prelinear and continuous functionals with respect to the distance $\rho$ in \eqref{eq:metric-rho}. In such a case, the (directional) derivative of $\psi$ at $\operatorname{P}-\operatorname{Q}$ is given by
+			\begin{equation}\label{Eqn:psi_prime}
+				\begin{aligned}
+					\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}(\zeta,g)&=g\left(h^{+,\lambda}\right)
+					\\
+					&\quad+\frac{1}{2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}}\,\int_{\mathcal{X}}\int_{\mathcal{X}}\partial_{\lambda}k_{\lambda}(x,y)(\zeta)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x),
+				\end{aligned}
+			\end{equation}
+			with $g\in\mathcal{C}\left(\mathcal{F}_{k,\Lambda},\rho\right)$ where the functions $h^{+,\lambda}$ are defined in \eqref{Witness}.}
+		\end{Th}
+		\begin{proof}
+			By definition of Hadamard directional differentiability and Lemma \ref{Lema:PartialLipschitz}, given $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$ and $\zeta\in\Lambda$ and sequences $\left(\zeta_{j}\right)_{j\in\mathbb{N}}\in\Lambda^{\mathbb{N}}$ and $\left(t_{j}\right)_{j\in\mathbb{N}}\in\mathbb{R}^{\mathbb{N}}$ such that $d_{\Lambda}\left(\zeta_{j},\lambda\right)\longrightarrow0$ and $t_{j}\searrow0$ when $j\longrightarrow\infty$ we have to show that
+			\begin{equation}
+				\lim_{j\longrightarrow\infty}\frac{\psi\left(\lambda+t_{j}\,\zeta_{j},\operatorname{P}-\operatorname{Q}+t_{j}\,g\right)-\psi(\lambda,\operatorname{P}-\operatorname{Q})-t_{j}\,\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}\left(\zeta,g\right)}{t_{j}}=0.
+			\end{equation}
+			To begin with, note that
+			\begin{equation}
+				\frac{\psi\left(\lambda+t_{j}\,\zeta_{j},\operatorname{P}-\operatorname{Q}+t_{j}\,g\right)-\psi(\lambda,\operatorname{P}-\operatorname{Q})-t_{j}\,\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}\left(\zeta,g\right)}{t_{j}}=L_{1}+L_{2}+L_{3},
+			\end{equation}
+			where
+			\begin{equation}
+				\begin{aligned}
+					L_{1}&=\frac{\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(\left(\operatorname{P}-\operatorname{Q}+t_{j}\,g\right)\,(f)\right)-\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,\left(\left(\operatorname{P}-\operatorname{Q}\right)\,(f)\right)}{t_{j}},
+					\\
+					L_{2}&=\frac{1}{L_{4}}\,\int_{\mathcal{X}}\int_{\mathcal{X}}\frac{k_{\lambda+t_{j}\,\zeta_{j}}(x,y)-k_{\lambda}(x,y)}{t_{j}}\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x),
+					\\
+					L_{3}&=\frac{1}{L_{4}}\,\left(g\left(\int_{\mathcal{X}}\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\right)\right.
+					\\
+					&\quad+\int_{\mathcal{X}}g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)
+					\\
+					&\quad\left.+t_{j}\,\left(\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}^{2}-\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda}\right)}^{2}\right)\right),
+					\\
+					L_{4}&=\left(\left\|\mu_{\operatorname{P}-\operatorname{Q}+t_{j}\,g}^{\lambda+t_{j}\,\zeta_{j}}\right\|_{\mathcal{H}_{k,\lambda+t_{j}\,\zeta_{j}}}+\left\|\mu_{\operatorname{P}-\operatorname{Q}+t_{j}\,g}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}\right)^{\rfrac{1}{2}}.
+				\end{aligned}
+			\end{equation}
+			The convergence of $L_{1}$ was proved in \textcite[Lemma 4]{Carcamo2024} and the limit is $g\left(h^{+,\lambda}\right)$, where $h^{+,\lambda}$ was defined in {\color{orange}INSERTAR ECUACI\'{O}N}. Provided the convergence of $L_{4}$, by \ref{itm:Par} converges to
+			\begin{equation}
+				\frac{1}{2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}}\,\int_{\mathcal{X}}\int_{\mathcal{X}}\partial_{\lambda}k_{\lambda}(x,y)(\zeta)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x).
+			\end{equation}
+			
+			Now we continue with $L_{4}$. By definition
+			\begin{equation}\label{Eqn:L4}
+				\begin{aligned}
+					\left\|\mu_{\operatorname{P}-\operatorname{Q}+t_{j}\,g}^{\lambda+t_{j}\,\zeta_{j}}\right\|_{\mathcal{H}_{k,\lambda+t_{j}\,\zeta_{j}}}&=\left(\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda+t_{j}\,\zeta_{j}}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)\right.
+					\\
+					&\quad+t_{j}\,g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)
+					\\
+					&\quad+t_{j}\,\int_{\mathcal{X}}g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)
+					\\
+					&\quad\left.+t_{j}^{2}\,\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}\right)^{\rfrac{1}{2}}.
+				\end{aligned}
+			\end{equation}
+			From top to bottom in \eqref{Eqn:L4}:
+			\begin{enumerate}
+				\item $\displaystyle\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda+t_{j}\,\zeta_{j}}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)$ converges to\break$\displaystyle\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)=\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}^{2}$ by \ref{itm:Dom} and \ref{itm:Par} by Cauchy-Schwarz's inequality and dominated convergence theorem.
+				\item By $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$
+				\begin{equation}
+					\left|g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}},
+				\end{equation}
+				so by \ref{itm:Dom},
+				\begin{equation}
+					\left|g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\int_{\mathcal{X}}\sqrt{k(x,x)}\,\operatorname{d}(\operatorname{P}+\operatorname{Q})(y),
+				\end{equation}
+				and $t_{j}\,g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)$ goes to $0$.
+				\item Analogously, $\left|g\left(k_{\lambda+t_{j}\,\zeta_{j}}\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\sqrt{k(y,y)}$, so we can conclude that $t_{j}\,\int_{\mathcal{X}}g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)$ is also tending to $0$.
+				\item Finally, since $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}$, then $t_{j}^{2}\,\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}$ converges to $0$.
+			\end{enumerate}
+			In conclusion, $L_{4}\longrightarrow2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}$ when $j\longrightarrow\infty$. Additionally, the bounds shown in the previous enumeration provides the domination condition to apply the dominated convergence theorem to the integrals in $L_{3}$. Now, let us proof the convergence of integrands:
+			\begin{enumerate}
+				\item
+				\item
+			\end{enumerate}
+		\end{proof}
