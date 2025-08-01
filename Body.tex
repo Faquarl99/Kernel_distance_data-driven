@@ -15,17 +15,21 @@
 	\end{equation}
 	where the integral is understand in the Pettis' sense. The interest of mean embedding lays in the following definition property: for every $f\in\mathcal{H}_{k,\lambda}$, we have that $\operatorname{S}(f)=\inp{f}{\mu_{\operatorname{S}}}{\mathcal{H}_{k,\lambda}}$, where $\inp{\,}{\,}{\mathcal{H}_{k,\lambda}}$ denotes the inner product. In terms of the Riesz's representation theorem for Hilbert's spaces, the mean embedding is the dual element of the integral functional induced by $\operatorname{S}$ in $\mathcal{H}_{k,\lambda}$ (provided integrability assumptions).
 	
-	In \textcite{Carcamo2024} we used the following set of assumptions.
+	I propose the following variation of the set of assumptions used in \textcite{Carcamo2024}.
 	\begin{description}
 		\labitem{(Reg)}{itm:Reg} \textit{Regularity assumption.} $\mathcal{X}$ is a separable metric space and each kernel is continuous as a real function of one variable (with the other kept fixed).
 		%, that is, $\sup_{x\in\mathcal{X}} k(x,x)$, $\sup_{x\in\mathcal{X}} k_\lambda(x,x)<\infty$ and $k_\lambda(x,\cdot)$, $k(x,\cdot)$ are continuous functions, for each fixed $x\in \mathcal{X}$, $\lambda\in\Lambda$.
-		\labitem{(Dom)}{itm:Dom} \textit{Dominance assumption.} There exists a constant $c>0$ such that $k_{\lambda}\ll c\,k$, for all $\lambda\in\Lambda$. Further, $k$ is bounded on the diagonal, that is, $\underset{x\in\mathcal{X}}{\operatorname{sup}}\,(k(x,x))<\infty$ {\color{orange}(CAMBIAR LA CONDICI\'{O}N DE DOMINANCIA. ES EXCESIVA) Separarla tambi\'{e}n de lo que se impone para la Donskeridad en $\mathcal{F}_{k,\Lambda}$, pues ahora mismo est\'{a}n mezcladas}.
+		\labitem{(Dnk)}{itm:Dnk} \textit{Dominance assumption.} There exists a constant $c>0$ such that $k_{\lambda}\ll c\,k$, for all $\lambda\in\Lambda$. Further, $k$ is $\operatorname{L}^{2}(\operatorname{P}+\operatorname{Q})$ on the diagonal, that is, $\int_{\mathcal{X}}k(x,x)\,\operatorname{d}(\operatorname{P}+\operatorname{Q})(x)<\infty$.
 		\labitem{(Ide)}{itm:Ide} \textit{Identifiability assumption.} If $\operatorname{P}\neq\operatorname{Q}$, there exists $\lambda\in\Lambda$ such that $\mu_{\operatorname{P}}^{\lambda}\neq\mu_{\operatorname{Q}}^{\lambda}$.
 		% The mean embeddings separate $\P$ and $\Q$ whenever , that is,
-		\labitem{(Par)}{itm:Par} \textit{Continuous parametrization.} $\Lambda$ is a compact subset of $\mathbb{R}^{k}$ (with $k\in\mathbb{N}$) and, for a fixed $(x,y)\in\mathcal{X}\times\mathcal{X}$, the function $\lambda\mapsto k_{\lambda}(x,y)$ is continuous from $\Lambda$ to $\mathbb{R}$ {\color{orange} MODIFICAR LA REGULARIDAD PARA INCLUIR LO QUE NECESITAMOS SOBRE DIFERENCIABILIDAD}.
+		\labitem{(Par)}{itm:Par} \textit{Continuous parametrization.} {\color{orange}$\Lambda$ is a compact subset of $\mathbb{R}^{k}$ (with $k\in\mathbb{N}$)}, for a fixed $(x,y)\in\mathcal{X}\times\mathcal{X}$, the function $\lambda\mapsto k_{\lambda}(x,y)$ is differentiable from $\Lambda$ to $\mathbb{R}$ with derivative $\partial k_{\lambda}(x,y)$ and there exists positive functions $G_{1}\in\operatorname{L}^{1}(\operatorname{P}+\operatorname{Q})$ and $G_{2}\in\operatorname{L}^{1}\left((\operatorname{P}+\operatorname{Q})^{2\,\otimes}\right)$ such that $\underset{\lambda\in\Lambda}{\operatorname{sup}}\,\left(k_{\lambda}(x,x)\right)\leq G_{1}(x)$ for $\operatorname{P}+\operatorname{Q}$-a.s $x\in\mathcal{X}$ and $\underset{\lambda\in\Lambda}{\operatorname{sup}}\,\left(\left|\partial k_{\lambda}(x,y)\right|\right)\leq G_{2}(x,y)$ for $(\operatorname{P}+\operatorname{Q})^{2\,\otimes}$-a.s $(x,y)\in\mathcal{X}^{2}$.
 		\labitem{(Sam)}{itm:Sam} \textit{Sampling scheme.} The sampling scheme is balanced, that is, $\frac{n}{(n+m)}\to\theta$, with $\theta\in[0,1]$, as $n,m\to\infty$.
 	\end{description}
-	Under a small variation of them, we will exploit the following Prof. C\'{a}rcamo's idea: if
+	{\color{orange}Desaparece (Dom) y aparece (Dnk) para mostrar las propiedades suficientes para el la inclusi\'{o}n en un RKHS m\'{a}s grande de funciones continuas y aplicar \textcite{Marcus1985}.
+	
+	Modificamos (Par) para que incluya la diferenciabilidad.}
+
+	We will exploit the following Prof. C\'{a}rcamo's idea: if
 	\begin{equation}\label{Eqn:ProfCarcaIdea}
 		\begin{aligned}
 			\psi(\lambda,\operatorname{P}-\operatorname{Q})&=\underset{f\in\mathcal{F}_{k,\lambda}}{\operatorname{sup}}\,((\operatorname{P}-\operatorname{Q})\,(f))=\left\|\mu_{\operatorname{P}}^{\lambda}-\mu_{\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}
@@ -37,25 +41,42 @@
 		h^{+,\lambda}=\frac{\mu_{\operatorname{P}}^{\lambda}-\mu_{\operatorname{Q}}^{\lambda}}{\left\|\mu_{\operatorname{P}}^{\lambda}-\mu_{\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}},
 	\end{equation}
 	
+	
+	
+	\begin{equation}\label{Eqn:Lambda_union_unit-ball}
+		\begin{aligned}
+			\mathcal{F}_{k,\lambda}&=\left\{f\in\mathcal{H}_{k,\lambda},\ \|f\|_{\mathcal{H}_{k,\lambda}}\leq1\right\},
+			\\
+			\mathcal{F}_{k,\Lambda}&=\bigcup_{\lambda\in \Lambda}  \mathcal{F}_{k,\lambda}.
+		\end{aligned}
+	\end{equation}
+	\begin{equation}
+		\rho\left(f_{1},f_{2}\right)=\underset{\operatorname{S}\in\{\operatorname{P},\operatorname{Q}\}}{\operatorname{max}}\,\left(\left(\int_{\mathcal{X}}\left|f_{1}(x)-f_{2}(x)\right|^{2}\,\operatorname{d}\!\operatorname{S}(x)\right)^{\rfrac{1}{2}}\right)
+	\end{equation}
 	\subsection{Preliminaries}
 		\begin{itemize}
 			\item Reproducing Kernel Hilbert Spaces.
 			\item Mean embedding.
 			\item Empirical process.
 			\item U-statistics.
+			\item Discussion on the joint process $\left(a_{m,n}\,\left(\lambda_{m,n}-\lambda\right),\mathbb{G}_{m,n}\right)$ on $\Lambda\times\mathcal{F}_{k,\Lambda}$. More precisely: sufficient conditions and M-estimators.
 		\end{itemize}
 		\subsubsection*{Generalized mean embedding}
 			{\color{orange}Las aplicaciones continuas y prelineales satisfacen la mayor\'{i}a de propiedades que les pedimos a las medidas de Borel $\mathcal{MB}_{\operatorname{p}}(\mathcal{X})$ para que haya mean embedding.}
 			\begin{Lema}
-				Let us assume that the family of kernels $\left\{k_{\theta}:\theta\in\Lambda\right\}$ satisfies \ref{itm:Dom}. Then, for every $\lambda\in\Lambda$, $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)\subseteq\mathcal{H}_{k,\lambda}^{\ast}$ and  $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$ verifies $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda}\right)}=\|g\|_{\mathcal{H}_{k,\lambda}^{\ast}}=\sqrt{g\left(g\left(k_{\lambda}\left(\cdot_{1},\cdot_{2}\right)\right)\right)}$. 
+				Let us assume that the family of kernels $\left\{k_{\theta}:\theta\in\Lambda\right\}$ satisfies \ref{itm:Par}. Then, for every $\lambda\in\Lambda$, $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)\subseteq\mathcal{H}_{k,\lambda}^{\ast}$ and  $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$ verifies $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda}\right)}=\|g\|_{\mathcal{H}_{k,\lambda}^{\ast}}=\sqrt{g\left(g\left(k_{\lambda}\left(\cdot_{1},\cdot_{2}\right)\right)\right)}$. 
 			\end{Lema}
 			\begin{proof}
-				The inclusion $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)\subseteq\mathcal{H}_{k,\lambda}^{\ast}$ is given by the fact that for $f_{1},f_{2}\in\mathcal{F}_{k,\lambda}$
+				The inclusion $\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)\subseteq\mathcal{H}_{k,\lambda}^{\ast}$ is given by the fact given \ref{itm:Par}, for $f_{1},f_{2}\in\mathcal{F}_{k,\lambda}$
 				\begin{equation}
-					\rho\left(f_{1},f_{2}\right)^{2}\leq\underset{\operatorname{S}\in\{\operatorname{P},\operatorname{Q}\}}{\operatorname{max}}\left(\int_{\mathcal{X}}k(x,x)\,\operatorname{d}\!\operatorname{S}(x)\right)\,\left\|f_{1}-f_{2}\right\|_{\mathcal{H}_{k,\lambda}}^{2}.
+					\rho\left(f_{1},f_{2}\right)\leq\underset{\operatorname{S}\in\{\operatorname{P},\operatorname{Q}\}}{\operatorname{max}}\,\left(\left(\int_{\mathcal{X}}k(x,x)\,\operatorname{d}\!\operatorname{S}(x)\right)^{\rfrac{1}{2}}\right)\,\left\|f_{1}-f_{2}\right\|_{\mathcal{H}_{k,\lambda}}.
 				\end{equation}
 				
-				The expression $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda}\right)}=\|g\|_{\mathcal{H}_{k,\lambda}^{\ast}}$ is a direct consequence of \textcite[Lemma 2.30, p. 88]{Dudley1999}. Now, by Riesz's representation theorem there exists an element in $\mathcal{H}_{k,\lambda}$, let's call it $\mu_{g}$, such that $\|g\|_{\mathcal{H}_{k,\lambda}^{\ast}}=g\left(\mu_{g}\right)$. {\color{orange}It can be proved that $\mu_{g}(\cdot)=g\left(k_{\lambda}\left(\cdot_{1},\cdot\right)\right)$.}
+				The expression $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda}\right)}=\|g\|_{\mathcal{H}_{k,\lambda}^{\ast}}$ is a direct consequence of \textcite[Lemma 2.30, p. 88]{Dudley1999}. Now, by Riesz's representation theorem (see \textcite[Th. 3.4]{Conway2019} there exists an element in $\mathcal{H}_{k,\lambda}$, let's call it $\mu_{g}$, such that $\|g\|_{\mathcal{H}_{k,\lambda}^{\ast}}=g\left(\mu_{g}\right)$. Let's prove that $\mu_{g}\left(\cdot_{2}\right)=g\left(k_{\lambda}\left(\cdot_{1},\cdot_{2}\right)\right)$. By \textcite[Th. 3]{Berlinet&Thomas-Agnan2011}, it is enough to check that for every $x\in\mathcal{X}$
+				\begin{equation}
+					\inp{\mu_{g}}{k_{\lambda}\left(x,\cdot_{2}\right)}{\mathcal{H}_{k,\lambda}}=g\left(k_{\lambda}\left(\cdot_{1},x\right)\right).
+				\end{equation}
+				Now, note that it is immediate by the reproducing property.
 			\end{proof}
 			{\color{orange}Comentarios varios sobre que $\mu_{g}$ es el \enquote{mean embedding} de $g$ y que hacer producto escalar contra $\mu_{g}$ es aplicar $g$ pero que no tenemos inter\'{e}s en esas propiedades en este trabajo.}
 	\subsection{State of the art: different approaches to parametric families of kernels}
@@ -67,7 +88,7 @@
 	\subsection{Our contribution}
 		\begin{itemize}
 			\item Asymptotic result for data-driven kernel distance.
-			\item Negative result on median heuristic for Gaussian kernel.
+			\item Theoretical insight on median heuristic for Gaussian kernel. Revise literature to complement other results on consistency (if they exists or they are formal).
 			\item Our proposal: data-driven corrected estimation (with the true asymptotic distribution).
 		\end{itemize}
 \section{Main results}
@@ -96,24 +117,24 @@
 				\begin{equation}
 					\frac{\psi\left(\lambda+t_{j}\,\zeta_{j},t_{j}\,g\right)-\psi(\lambda,0)-t_{j}\,\psi_{(\lambda,0)}^{\prime}\left(\zeta,g\right)}{t_{j}}=\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}-\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda}\right)}.
 				\end{equation}
-				Now observe that $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}=\sqrt{g\left(g\left(k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},\cdot_{2}\right)\right)\right)}$. By \ref{itm:Dom}, \ref{itm:Par} and dominated convergence theorem, $k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},y\right)$ converges to $k_{\lambda}\left(\cdot_{1},y\right)$ on the metric $\rho$ for every $y\in\mathcal{X}$. Hence, by continuity of $g$, $g\left(k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},y\right)\right)$ to $g\left(k_{\lambda}\left(\cdot_{1},y\right)\right)$ pointwise in $y\in\mathcal{X}$.
+				Now observe that $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}=\sqrt{g\left(g\left(k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},\cdot_{2}\right)\right)\right)}$. By \ref{itm:Par} and dominated convergence theorem, $k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},y\right)$ converges to $k_{\lambda}\left(\cdot_{1},y\right)$ on the metric $\rho$ for every $y\in\mathcal{X}$. Hence, by continuity of $g$, $g\left(k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},y\right)\right)$ to $g\left(k_{\lambda}\left(\cdot_{1},y\right)\right)$ pointwise in $y\in\mathcal{X}$.
 				
-				At this point, it is worth to mention that by \ref{itm:Dom}
+				At this point, it is worth to mention that by \ref{itm:Par}
 				\begin{equation}
-					\left|g\left(k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},y\right)\right)-g\left(k_{\lambda}\left(\cdot_{1},y\right)\right)\right|\leq2\,\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\sqrt{k(y,y)},
+					\left|g\left(k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},y\right)\right)-g\left(k_{\lambda}\left(\cdot_{1},y\right)\right)\right|\leq2\,\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\sqrt{G_{1}(y)},
 				\end{equation}
 				so, by dominated convergence theorem the convergence of $g\left(k_{\lambda+t_{j}\,\zeta_{j}}\left(\cdot_{1},\cdot_{2}\right)\right)$ to $g\left(k_{\lambda}\left(\cdot_{1},\cdot_{2}\right)\right)$ is also given in the metric $\rho$. Thanks to the continuity of $g$, the first part of the proof is ended.
 			\end{proof}
 		\subsubsection*{\color{orange} Differentiability under the alternative}
 			\begin{Th}
-				Let us assume that the family of kernels $\left\{k_{\theta}:\theta\in\Lambda\right\}$ satisfies \ref{itm:Dom}, \ref{itm:Ide} and \ref{itm:Par}. If $\operatorname{P},\operatorname{Q}\in\mathcal{MB}_{\operatorname{p}}(\mathcal{X})$ such that $\operatorname{P}\neq\operatorname{Q}$, then the mapping $\psi$ in \eqref{Eqn:ProfCarcaIdea} is Hadamard directionally differentiable at $(\lambda,\operatorname{P}-\operatorname{Q})$ tangentially to $\Lambda\times\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$,
+				Let us assume that the family of kernels $\left\{k_{\theta}:\theta\in\Lambda\right\}$ satisfies \ref{itm:Ide} and \ref{itm:Par}. If $\operatorname{P},\operatorname{Q}\in\mathcal{MB}_{\operatorname{p}}(\mathcal{X})$ such that $\operatorname{P}\neq\operatorname{Q}$, then the mapping $\psi$ in \eqref{Eqn:ProfCarcaIdea} is Hadamard directionally differentiable at $(\lambda,\operatorname{P}-\operatorname{Q})$ tangentially to $\Lambda\times\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$,
 				% Yo esto lo quitaría por redundante con la definición que estará en la versión final.
 				{\color{orange}the subset of $\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)$ constituted by bounded, prelinear and continuous functionals with respect to the distance $\rho$ in \eqref{eq:metric-rho}}. In such a case, the (directional) derivative of $\psi$ at $(\lambda,\operatorname{P}-\operatorname{Q})$ is given by
 				\begin{equation}\label{Eqn:psi_prime1}
 					\begin{aligned}
 						\psi_{(\lambda,\operatorname{P}-\operatorname{Q})}^{\prime}(\zeta,g)&=g\left(h^{+,\lambda}\right)
 						\\
-						&\quad+\frac{1}{2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}}\,\int_{\mathcal{X}}\int_{\mathcal{X}}\partial_{\lambda}k_{\lambda}(x,y)(\zeta)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x),
+						&\quad+\frac{1}{2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}}\,\int_{\mathcal{X}}\int_{\mathcal{X}}\partial k_{\lambda}(x,y)(\zeta)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x),
 					\end{aligned}
 				\end{equation}
 				with $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$ and $\zeta\in\Lambda$; where the functions $h^{+,\lambda}$ are defined in \eqref{Eqn:Witness}.
@@ -141,9 +162,9 @@
 						L_{4}&=\left(\left\|\mu_{\operatorname{P}-\operatorname{Q}+t_{j}\,g}^{\lambda+t_{j}\,\zeta_{j}}\right\|_{\mathcal{H}_{k,\lambda+t_{j}\,\zeta_{j}}}+\left\|\mu_{\operatorname{P}-\operatorname{Q}+t_{j}\,g}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}\right)^{\rfrac{1}{2}}.
 					\end{aligned}
 				\end{equation}
-				The convergence of $L_{1}$ was proved in \textcite[Lemma 4]{Carcamo2024} and the limit is $g\left(h^{+,\lambda}\right)$, where $h^{+,\lambda}$ was defined in \eqref{Eqn:Witness}. Provided the convergence of $L_{4}$, by \ref{itm:Dom} and \ref{itm:Par}, $L_{2}$ converges to
+				The convergence of $L_{1}$ was proved in \textcite[Lemma 4]{Carcamo2024} and the limit is $g\left(h^{+,\lambda}\right)$, where $h^{+,\lambda}$ was defined in \eqref{Eqn:Witness}. Provided the convergence of $L_{4}$ to $2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}$, by \ref{itm:Par} and \textcite[Theorem 2.27]{Folland2013}, $L_{2}$ converges to
 				\begin{equation}
-					\frac{1}{2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}}\,\int_{\mathcal{X}}\int_{\mathcal{X}}\partial_{\lambda}k_{\lambda}(x,y)(\zeta)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x).
+					\frac{1}{2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}}\,\int_{\mathcal{X}}\int_{\mathcal{X}}\partial k_{\lambda}(x,y)(\zeta)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x).
 				\end{equation}
 				
 				Now we continue with $L_{4}$. By definition
@@ -160,26 +181,26 @@
 				\end{equation}
 				From top to bottom in \eqref{Eqn:L4}:
 				\begin{enumerate}
-					\item $\displaystyle\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda+t_{j}\,\zeta_{j}}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)$ converges to\break$\displaystyle\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)=\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}^{2}$ by \ref{itm:Dom},\ref{itm:Par} and Cauchy-Schwarz's inequality and dominated convergence theorem.
+					\item $\displaystyle\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda+t_{j}\,\zeta_{j}}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)$ converges to\break$\displaystyle\int_{\mathcal{X}}\int_{\mathcal{X}}k_{\lambda}(x,y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(x)=\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}^{2}$ by \ref{itm:Par} and Cauchy-Schwarz's inequality and dominated convergence theorem.
 					\item By $g\in\mathcal{C}_{\operatorname{bpl}}\left(\mathcal{F}_{k,\Lambda},\rho\right)$
 					\begin{equation}
 						\left|g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}},
 					\end{equation}
-					so by \ref{itm:Dom},
+					so by \ref{itm:Par},
 					\begin{equation}
-						\left|g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\int_{\mathcal{X}}\sqrt{k(x,x)}\,\operatorname{d}(\operatorname{P}+\operatorname{Q})(y),
+						\left|g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\int_{\mathcal{X}}\sqrt{G_{1}(x)}\,\operatorname{d}(\operatorname{P}+\operatorname{Q})(y),
 					\end{equation}
 					and $t_{j}\,g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}\right)$ goes to $0$.
-					\item Analogously, $\left|g\left(k_{\lambda+t_{j}\,\zeta_{j}}\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\sqrt{k(y,y)}$, so we can conclude that $\displaystyle t_{j}\,\int_{\mathcal{X}}g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)$ is also tending to $0$.
+					\item Analogously, $\left|g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)\right)\right|\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}\,\sqrt{G_{1}(y)}$, so we can conclude that $\displaystyle t_{j}\,\int_{\mathcal{X}}g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)$ is also tending to $0$.
 					\item Finally, since $\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}\leq\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}$, then $t_{j}^{2}\,\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}$ converges to $0$.
 				\end{enumerate}
-				In conclusion, $L_{4}\longrightarrow2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}$ when $j\longrightarrow\infty$. To end up this proof, we see the convergence of $L_{3}$. Firstly, we tackle $\displaystyle\int_{\mathcal{X}}g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)$. Pointwise convergence of $k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)$ to $k_{\lambda}(\cdot,y)$ is given by \ref{itm:Dom}, \ref{itm:Par} and \textcite[Theorem 2.27]{Folland2013}, convergence in metric $\rho$ is also given. By continuity of $g$, $g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)$ is converging to $0$ pointwise when $j\longrightarrow\infty$. Since this expression is also bounded by the third item of the previous enumeration, by dominated convergence theorem we have the desired limit.
+				In conclusion, $L_{4}\longrightarrow2\,\left\|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right\|_{\mathcal{H}_{k,\lambda}}$ when $j\longrightarrow\infty$. To end up this proof, we see the convergence of $L_{3}$. Firstly, we tackle $\displaystyle\int_{\mathcal{X}}g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)\,\operatorname{d}(\operatorname{P}-\operatorname{Q})(y)$. Pointwise convergence of $k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)$ to $k_{\lambda}(\cdot,y)$ is given by \ref{itm:Par} and \textcite[Theorem 2.27]{Folland2013}, convergence in metric $\rho$ is also given. By continuity of $g$, $g\left(k_{\lambda+t_{j}\,\zeta_{j}}(\cdot,y)-k_{\lambda}(\cdot,y)\right)$ is converging to $0$ pointwise when $j\longrightarrow\infty$. Since this expression is also bounded by the third item of the previous enumeration, by dominated convergence theorem we have the desired limit.
 				
-				Secondly, convergence $g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}-\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right)$ to $0$ is to be proved. By \ref{itm:Dom}, \ref{itm:Par}, and definition of meam embedding, $\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}$ converges to $\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}$ pointwise. Now, recall that
+				Secondly, convergence $g\left(\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}-\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}\right)$ to $0$ is to be proved. By \ref{itm:Par}, and definition of meam embedding, $\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}$ converges to $\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}$ pointwise. Now, recall that
 				\begin{equation}
-					\left|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}(x)-\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}(x)\right|\leq2\,\sqrt{k(x,x)}\,\int_{\mathcal{X}}\sqrt{k(y,y)}\,\operatorname{d}(\operatorname{P}+\operatorname{Q})(y),
+					\left|\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda+t_{j}\,\zeta_{j}}(x)-\mu_{\operatorname{P}-\operatorname{Q}}^{\lambda}(x)\right|\leq2\,\sqrt{G_{1}(x)}\,\int_{\mathcal{X}}\sqrt{G_{1}(y)}\,\operatorname{d}(\operatorname{P}+\operatorname{Q})(y),
 				\end{equation}
-				by \ref{itm:Dom}. So, by virtue of dominated convergence theorem, the convergence is also given in the metric $\rho$. By continuity of $g$, this term is also done.
+				by \ref{itm:Par}. So, by virtue of dominated convergence theorem, the convergence is also given in the metric $\rho$. By continuity of $g$, this term is also done.
 				
 				Finally, for the last term it is enough to observe that $\left|\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda+t_{j}\,\zeta_{j}}\right)}^{2}-\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\lambda}\right)}^{2}\right|\leq2\,\|g\|_{\ell^{\infty}\left(\mathcal{F}_{k,\Lambda}\right)}^{2}$. Hence, $L_{3}$ is converging to $0$ and the proof is ended.
 			\end{proof}
